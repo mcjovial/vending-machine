@@ -12,6 +12,7 @@ module.exports = {
   update,
   deposit,
   delete: _delete,
+  getUser,
 };
 
 async function login({ username, password }) {

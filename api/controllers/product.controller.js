@@ -36,3 +36,10 @@ exports._delete = (req, res, next) => {
     .then(() => res.json({ message: "Product deleted successfully" }))
     .catch(next);
 };
+
+exports.buyProduct = (req, res, next) => {
+  productService
+    .buyProduct(req.user.id, req.params.id, req.body.amount)
+    .then((data) => res.status(200).json(data))
+    .catch(next);
+};

@@ -22,10 +22,10 @@ const userSchema = new Schema({
     deposit: {
         type: Number,
         default: 0,
-        validate: [
-            validateDeposit,
-            "Deposit can only be 5,10,20,50,100 or withdraws",
-        ]
+        // validate: [
+        //     validateDeposit,
+        //     "Deposit can only be 5,10,20,50,100 or withdraws",
+        // ]
     },
     role: {
         type: String,
