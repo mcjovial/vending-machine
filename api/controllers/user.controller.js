@@ -13,7 +13,7 @@ exports.login = (req, res, next) => {
 
 exports.register = (req, res, next) => {
   userService
-    .register(req.body, req.get("origin"), res)
+    .register(req.body)
     .then(() =>
       res.json({
         message: "Registration successful",

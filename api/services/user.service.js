@@ -2,7 +2,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const db = require("_helpers/db");
-const { findOneAndUpdate } = require("../models/user.model");
 const User = require("../models/user.model");
 
 module.exports = {
@@ -31,7 +30,7 @@ async function login({ username, password }) {
   };
 }
 
-async function register(params, origin) {
+async function register(params) {
   // validate
   if (await User.findOne({ username: params.username })) {
     throw "Username is already registered!";

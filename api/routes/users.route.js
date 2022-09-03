@@ -1,5 +1,4 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 const authorize = require("../_middleware/authorize");
 const {
   register,
