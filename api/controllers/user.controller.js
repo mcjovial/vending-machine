@@ -1,9 +1,8 @@
 ﻿const userService = require("../services/user.service");
 
-
 exports.login = (req, res, next) => {
   const { username, password } = req.body;
-  console.log('ip address', req.ip);
+  console.log("ip address", req.ip);
   userService
     .login({ username, password })
     .then(({ ...user }) => {
@@ -17,8 +16,7 @@ exports.register = (req, res, next) => {
     .register(req.body, req.get("origin"), res)
     .then(() =>
       res.json({
-        message:
-          "Registration successful",
+        message: "Registration successful",
       })
     )
     .catch(next);
@@ -32,11 +30,6 @@ exports.getAll = (req, res, next) => {
 };
 
 exports.getById = (req, res, next) => {
-  // users can get their own user and admins can get any user
-  if (req.params.id !== req.user.id) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
   userService
     .getById(req.params.id)
     .then((user) => (user ? res.json(user) : res.sendStatus(404)))
@@ -44,14 +37,16 @@ exports.getById = (req, res, next) => {
 };
 
 exports.update = (req, res, next) => {
-  // users can update their own user and admins can update any user
-  if (req.params.id !== req.user.id) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
-
   userService
     .update(req.params.id, req.body)
     .then((user) => res.json(user))
+    .catch(next);
+};
+
+exports.deposit = (req, res, next) => {
+  userService
+    .deposit(req.user.id, req.body)
+    .then((data) => res.json(data))
     .catch(next);
 };
 
