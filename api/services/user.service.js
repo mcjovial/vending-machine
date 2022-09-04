@@ -13,6 +13,7 @@ module.exports = {
   deposit,
   delete: _delete,
   getUser,
+  reset
 };
 
 async function login({ username, password }) {
@@ -85,6 +86,14 @@ async function deposit(id, params) {
     throw `Deposit can only be 5,10,20,50,100`;
   }
   return await User.findOneAndUpdate({ _id: id }, params, { new: true });
+}
+
+async function reset(id) {
+  return await User.findOneAndUpdate(
+    { _id: id },
+    { deposit: 0 },
+    { new: true }
+  ).select({ username: 1, deposit: 1 });
 }
 
 async function _delete(id) {

@@ -2,7 +2,6 @@ const Product = require("../models/product.model");
 const db = require("_helpers/db");
 const User = require("../models/user.model");
 const { getUser } = require("./user.service");
-const { use } = require("../routes");
 
 async function create(id, params) {
   params.seller_id = id;
@@ -78,26 +77,26 @@ async function buyProduct(buyerId, productId, amount) {
 
   change_description = s.sort((a, b) => b[0] - a[0]);
 
-  const sales = Product.findByIdAndUpdate(
+  const sales = await Product.findByIdAndUpdate(
     productId,
     { $inc: { amountAvailable: -amount, sales: 1 } },
     { new: true }
   );
 
-  const balance = User.findByIdAndUpdate(
+  const balance = await User.findByIdAndUpdate(
     buyerId,
     { $inc: { deposit: -total_cost } },
     { new: true }
-  )
-  
+  );
+
   return {
     status: true,
     message: "Thank you visit again.",
     total_spent: total_cost,
     products_purchased: `${product.productName} [${amount}]`,
     change: change_safe,
-    change_description
-  }    
+    change_description,
+  };
 }
 
 async function getProduct(id) {

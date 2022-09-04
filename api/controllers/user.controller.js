@@ -50,12 +50,14 @@ exports.deposit = (req, res, next) => {
     .catch(next);
 };
 
-exports._delete = (req, res, next) => {
-  // users can delete their own user and admins can delete any user
-  if (req.params.id !== req.user.id) {
-    return res.status(401).json({ message: "Unauthorized" });
-  }
+exports.reset = (req, res, next) => {
+  userService
+    .reset(req.user.id)
+    .then((data) => res.json(data))
+    .catch(next);
+};
 
+exports._delete = (req, res, next) => {
   userService
     .delete(req.params.id)
     .then(() => res.json({ message: "User deleted successfully" }))
