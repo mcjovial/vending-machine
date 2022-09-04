@@ -39,11 +39,9 @@ async function buyProduct(buyerId, productId, amount) {
   const total_cost = cost * amount;
   let change = user.deposit - total_cost;
 
-  if (user.deposit < total_cost)
-    throw `Insufficient Deposit Balance. Requires: $${total_cost}. Available: $${user.deposit}`;
-  if (amount < amountAvailable)
-    throw `Insufficient Product Numbers. Currently max: ${amountAvailable}`;
   if (amountAvailable === 0) throw `Sorry this Product Is Not Available`;
+  if (amountAvailable < amount) throw `Insufficient Product Numbers. Currently max: ${amountAvailable}`;
+  if (user.deposit < total_cost) throw `Insufficient Deposit Balance. Requires: $${total_cost}. Available: $${user.deposit}`;
 
   //calculation
   let change_arr = [100, 50, 20, 10, 5];
@@ -79,7 +77,7 @@ async function buyProduct(buyerId, productId, amount) {
 
   const sales = await Product.findByIdAndUpdate(
     productId,
-    { $inc: { amountAvailable: -amount, sales: 1 } },
+    { $inc: { amountAvailable: -amount, sales: amount } },
     { new: true }
   );
 
@@ -93,7 +91,7 @@ async function buyProduct(buyerId, productId, amount) {
     status: true,
     message: "Thank you visit again.",
     total_spent: total_cost,
-    products_purchased: `${product.productName} [${amount}]`,
+    products_purchased: `${product.productName} [${amount} units]`,
     change: change_safe,
     change_description,
   };

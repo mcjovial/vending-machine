@@ -85,7 +85,7 @@ async function deposit(id, params) {
   if (!allowed_coins.includes(params.deposit)) {
     throw `Deposit can only be 5,10,20,50,100`;
   }
-  return await User.findOneAndUpdate({ _id: id }, params, { new: true });
+  return await User.findOneAndUpdate({ _id: id }, { $inc: { deposit: params.deposit } }, { new: true });
 }
 
 async function reset(id) {
