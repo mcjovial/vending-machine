@@ -23,12 +23,12 @@ async function login({ username, password }) {
   }
 
   // authentication successful so generate jwt and refresh tokens
-  const jwtToken = generateJwtToken(user);
+  const token = generateJwtToken(user);
 
   // return basic details and tokens
   return {
     ...basicDetails(user),
-    jwtToken,
+    token,
   };
 }
 
