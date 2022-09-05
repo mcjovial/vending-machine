@@ -1,8 +1,8 @@
-﻿const config = require("config.json");
-const jwt = require("jsonwebtoken");
+﻿const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const db = require("_helpers/db");
+const db = require("../_helpers/db");
 const User = require("../models/user.model");
+const { secret } = require("../_helpers/config");
 
 module.exports = {
   login,
@@ -123,7 +123,7 @@ function hash(password) {
 
 function generateJwtToken(user) {
   // create a jwt token containing the user id that expires in 15 minutes
-  return jwt.sign({ sub: user.id, id: user.id }, config.secret, {
+  return jwt.sign({ sub: user.id, id: user.id }, secret, {
     expiresIn: "45m",
   });
 }

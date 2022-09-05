@@ -1,5 +1,5 @@
 const Product = require("../models/product.model");
-const db = require("_helpers/db");
+const db = require("../_helpers/db");
 const User = require("../models/user.model");
 const { getUser } = require("./user.service");
 

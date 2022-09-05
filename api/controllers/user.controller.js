@@ -15,7 +15,7 @@ exports.register = (req, res, next) => {
   userService
     .register(req.body)
     .then((data) =>
-      res.json(data)
+      res.status(201).json(data)
     )
     .catch(next);
 };
