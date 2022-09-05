@@ -1,7 +1,7 @@
 {
-    "name": "server",
+    "name": "vending-machine-api",
     "version": "1.0.0",
-    "description": "NodeJS + MongoDB API for Email Sign Up with Verification, Authentication & Forgot Password",
+    "description": "Vending machine api with node, express and mongodb",
     "license": "MIT",
     "repository": {
         "type": "git",

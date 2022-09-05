@@ -1,0 +1,28 @@
+{
+  "name": "mern-vending-machine",
+  "version": "1.0.0",
+  "description": "MVP-match task",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm install --prefix server && npm start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcjovial/vending-machine.git"
+  },
+  "keywords": [
+    "vending",
+    "machine",
+    "node",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "mcjovial",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcjovial/vending-machine/issues"
+  },
+  "homepage": "https://github.com/mcjovial/vending-machine#readme"
+}
