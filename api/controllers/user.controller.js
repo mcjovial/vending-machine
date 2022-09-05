@@ -2,7 +2,6 @@
 
 exports.login = (req, res, next) => {
   const { username, password } = req.body;
-  console.log("ip address", req.ip);
   userService
     .login({ username, password })
     .then(({ ...user }) => {
