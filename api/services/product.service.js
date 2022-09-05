@@ -5,7 +5,11 @@ const { getUser } = require("./user.service");
 
 async function create(id, params) {
   params.seller_id = id;
-  await Product.create(params);
+  const product = await Product.create(params);
+  return {
+    product,
+    message: "Product created successfully"
+  }
 }
 
 async function getAll() {
@@ -93,10 +97,10 @@ async function buyProduct(buyerId, productId, amount) {
 
   return {
     status: true,
-    message: "Thank you visit again.",
-    total_spent: total_cost,
+    message: "Thank you. Your purchase was successful!",
+    total_spent: `¢${total_cost}`,
     products_purchased: `${product.productName} [${amount} units]`,
-    change: change_safe,
+    change: `¢${change_safe}`,
     change_description,
   };
 }

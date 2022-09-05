@@ -3,8 +3,8 @@ const productService = require("../services/product.service");
 exports.create = (req, res, next) => {
   productService
     .create(req.user.id, req.body)
-    .then(() =>
-      res.status(201).json({ message: "Product created successfully" })
+    .then((data) =>
+      res.status(201).json(data)
     )
     .catch(next);
 };

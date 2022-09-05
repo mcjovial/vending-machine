@@ -13,8 +13,15 @@ beforeAll(async () => {
 describe("User tests", () => {
   let seller;
   let buyer;
+  let user;
 
   beforeEach(async () => {
+    user = {
+      username: "new_user",
+      password: "mypassword",
+      role: "seller",
+    };
+
     seller = {
       username: "mcjovial",
       password: "mypassword",
@@ -28,7 +35,7 @@ describe("User tests", () => {
     };
 
     await User.remove({});
-    await User.create(seller);
+    await User.create(user);
   });
 
   describe("POST /api/user/register", () => {
@@ -91,7 +98,7 @@ describe("User tests", () => {
       let response = await request(app).post("/api/user/register").send(buyer);
       expect(response.status).toBe(201);
 
-      const new_username = { username: "dawali66" }
+      const new_username = { username: "dawali66" };
       response = await request(app)
         .put(`/api/user/${response.body.id}`)
         .set("Authorization", `Bearer ${response.body.token}`)
@@ -107,9 +114,9 @@ describe("User tests", () => {
       let response = await request(app).post("/api/user/register").send(buyer);
       expect(response.status).toBe(201);
 
-      const amount = { deposit: 50 }
+      const amount = { deposit: 50 };
       response = await request(app)
-        .put('/api/user')
+        .put("/api/user")
         .set("Authorization", `Bearer ${response.body.token}`)
         .send(amount);
 
@@ -123,10 +130,10 @@ describe("User tests", () => {
       let response = await request(app).post("/api/user/register").send(buyer);
       expect(response.status).toBe(201);
 
-      const amount = { deposit: 50 }
+      const amount = { deposit: 50 };
       response = await request(app)
-        .post('/api/user/reset')
-        .set("Authorization", `Bearer ${response.body.token}`)
+        .post("/api/user/reset")
+        .set("Authorization", `Bearer ${response.body.token}`);
 
       expect(response.status).toBe(200);
       expect(response.body.deposit).toBe(0);
@@ -144,5 +151,4 @@ describe("User tests", () => {
       expect(response.status).toBe(200);
     });
   });
-
 });
