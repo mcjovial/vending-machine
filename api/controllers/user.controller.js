@@ -14,10 +14,8 @@ exports.login = (req, res, next) => {
 exports.register = (req, res, next) => {
   userService
     .register(req.body)
-    .then(() =>
-      res.json({
-        message: "Registration successful",
-      })
+    .then((data) =>
+      res.json(data)
     )
     .catch(next);
 };

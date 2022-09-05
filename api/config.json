@@ -1,5 +1,5 @@
 ﻿{
-    "connectionString": "mongodb+srv://mcjovial:19971104Mj@mlm.8f0wd1x.mongodb.net/?retryWrites=true&w=majority",
+    "connectionString": "mongodb+srv://mcjovial:19971104Mj@cluster0.z7tsb.mongodb.net/?retryWrites=true&w=majority",
     "secret": "mcJoviAl",
     "emailFrom": "info@auth-veri.com",
     "smtpOptions": {

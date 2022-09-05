@@ -23,6 +23,13 @@ exports.getById = (req, res, next) => {
     .catch(next);
 };
 
+exports.getSellerProducts = (req, res, next) => {
+  productService
+    .sellerProducts(req.user.id)
+    .then((data) => res.status(200).json(data))
+    .catch(next);
+};
+
 exports.update = (req, res, next) => {
   productService
     .update(req.user.id, req.params.id, req.body)

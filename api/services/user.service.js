@@ -47,7 +47,14 @@ async function register(params) {
   // save user
   await user.save();
 
-  return basicDetails(user);
+  // authentication successful so generate jwt and refresh tokens
+  const token = generateJwtToken(user);
+
+  // return basic details and tokens
+  return {
+    ...basicDetails(user),
+    token,
+  };
 }
 
 async function getAll() {

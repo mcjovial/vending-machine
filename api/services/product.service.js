@@ -16,6 +16,10 @@ async function getById(id) {
   return await getProduct(id);
 }
 
+async function sellerProducts(id) {
+  return await Product.find({seller_id: id});
+}
+
 async function update(sellerId, productId, params) {
   await checkSeller(sellerId, productId);
   await getProduct(productId);
@@ -118,4 +122,5 @@ module.exports = {
   update,
   delete: _delete,
   buyProduct,
+  sellerProducts
 };
