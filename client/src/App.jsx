@@ -14,6 +14,7 @@ import Register from "./components/Authentication/Register";
 import Login from "./components/Authentication/Login";
 import ProtectedRoute from "./components/ProtectedRoute"
 import Seller from "./components/Seller/Seller";
+import Product from "./components/Seller/Product";
 
 const App = () => {
   const [authorized, setAuthorized] = useState(false);
@@ -48,6 +49,7 @@ const App = () => {
             ></Login>
           </Route>
           <ProtectedRoute exact path="/seller" component={Seller} />
+          <ProtectedRoute exact path="/product/:id" component={Product} />
 
           {/* <Route path="/account">
             <ProtectedRoute
