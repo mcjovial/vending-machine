@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Seller = () => {
   const token = localStorage.getItem("token");
-  const api = import.meta.env.API || "https://express-vender.herokuapp.com/api";
+  const api = import.meta.env.API || "http://localhost:4000/api";
   const username = localStorage.getItem("name");
   const [name, setName] = useState("");
   const [products, setProducts] = useState([]);
@@ -84,7 +84,7 @@ const Seller = () => {
       <p className="font-bold text-3xl">Welcome Back! { name }</p>
       <div className="w-full h-full  p-8 py-12 space-y-12 px-8">
         <div className="h-full w-full px-8 space-y-12">
-          <div className="flex">
+          <div className="grid md:grid-cols-3 sm:grid-cols-2">
             {
               products.map((product, i) => (
                 <Link to={`/product/${product._id}`} key={i} href="#" className="block p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">

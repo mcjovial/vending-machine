@@ -29,6 +29,15 @@ const Header = () => {
           <Link to="/seller" className="text-xl font-medium text-yellow-400">
             Seller
           </Link>
+          {authorized ? (
+            <button
+              type="button"
+              className="text-2xl font-medium h-8 flex items-center text-yellow-600"
+              onClick={() => logout()}
+            >
+              Logout
+            </button>
+          ): ''}
         </div>
       </div>
       {open ? (

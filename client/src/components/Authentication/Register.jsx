@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Register = ({ setAuthorized }) => {
   const history = useHistory();
-  const api = import.meta.env.API || "https://express-vender.herokuapp.com/api";
+  const api = import.meta.env.API || "http://localhost:4000/api";
   // const [error, setError] = useState({});
   const [input, setInput] = useState({
     username: "",

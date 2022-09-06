@@ -29,13 +29,6 @@ const App = () => {
           setAuthorized={setAuthorized}
         ></Header>
         <Switch>
-          <Route path="/" exact>
-            <LandingPage
-              authorized={authorized}
-              setAuthorized={setAuthorized}
-            ></LandingPage>
-          </Route>
-          {/* <Route path="/seller" component={Seller}></Route> */}
           <Route path="/register">
             <Register
               authorized={authorized}
@@ -48,6 +41,7 @@ const App = () => {
               setAuthorized={setAuthorized}
             ></Login>
           </Route>
+          <ProtectedRoute exact path="/" component={LandingPage} />
           <ProtectedRoute exact path="/seller" component={Seller} />
           <ProtectedRoute exact path="/product/:id" component={Product} />
 

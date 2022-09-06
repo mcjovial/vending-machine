@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Login = ({ setAuthorized }) => {
-  const api = import.meta.env.API || "https://express-vender.herokuapp.com/api";
+  const api = import.meta.env.API || "http://localhost:4000/api";
   const history = useHistory();
   const [input, setInput] = useState({
     username: "",
@@ -44,7 +44,11 @@ const Login = ({ setAuthorized }) => {
     } catch (error) {
       const response = error.response.data;
       console.log(error.response.data);
-      alert(response.error);
+      if (response.error) {
+        alert(response.error);
+      } else {
+        alert(response.message);
+      }
     }
   };
 
