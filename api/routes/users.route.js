@@ -16,6 +16,7 @@ const {
   registerSchema,
   loginSchema,
   updateSchema,
+  depositSchema,
 } = require("../validations/user.validation");
 
 // routes
@@ -26,7 +27,7 @@ router.get("/info", authorize(), getInfo);
 router.get("/:id", authorize(), getById);
 router.post("/reset", authorize(), reset);
 router.put("/:id", authorize(), updateSchema, update);
-router.put("/", authorize("buyer"), deposit);
+router.put("/", authorize("buyer"), depositSchema, deposit);
 router.delete("/:id", authorize(), _delete);
 
 module.exports = router;

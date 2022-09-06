@@ -19,6 +19,13 @@ exports.registerSchema = (req, res, next) => {
   validateRequest(req, next, schema);
 };
 
+exports.depositSchema = (req, res, next) => {
+  const schema = Joi.object({
+    deposit: Joi.number().required(),
+  });
+  validateRequest(req, next, schema);
+};
+
 
 exports.updateSchema = (req, res, next) => {
   const schema = Joi.object({
