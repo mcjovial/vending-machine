@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import httpClient from "../../utils/api";
 
 const Login = ({ setAuthorized }) => {
-  const api = import.meta.env.API || "http://localhost:4000/api";
   const history = useHistory();
   const [input, setInput] = useState({
     username: "",
@@ -19,17 +18,12 @@ const Login = ({ setAuthorized }) => {
   };
 
   const login = async () => {
-    console.log(api);
     const postData = {
       username: input.username,
       password: input.password,
     };
     try {
-      const response = await axios.post(`${api}/user/login`, postData, {
-        Headers: {
-          "Content-Type": "Application/json",
-        },
-      });
+      const response = await httpClient.post('/user/login', postData);
       console.log(response);
       const { data } = response;
       localStorage.setItem("token", data.token);

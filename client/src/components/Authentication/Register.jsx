@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import httpClient from "../../utils/api";
 
 const Register = ({ setAuthorized }) => {
   const history = useHistory();
-  const api = import.meta.env.API || "http://localhost:4000/api";
   // const [error, setError] = useState({});
   const [input, setInput] = useState({
     username: "",
     password: "",
     role: "",
   });
-
-  console.log(input);
 
   const inputChange = (e) => {
     e.preventDefault();
@@ -23,7 +20,6 @@ const Register = ({ setAuthorized }) => {
   };
 
   const register = async () => {
-    console.log(api);
     const data = {
       username: input.username,
       password: input.password,
@@ -32,11 +28,7 @@ const Register = ({ setAuthorized }) => {
 
     try {
       // register
-      const response = await axios.post(`${api}/user/register`, data, {
-        headers: {
-          "Content-Type": "Application/json",
-        },
-      });
+      const response = await httpClient.post('/user/register', data);
       const responseData = response.data;
 
       // setToken, authorize and redirect

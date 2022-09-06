@@ -46,7 +46,7 @@ exports._delete = (req, res, next) => {
 
 exports.buyProduct = (req, res, next) => {
   productService
-    .buyProduct(req.user.id, req.params.id, req.body.amount)
+    .buyProduct(req.user.id, req.params.id)
     .then((data) => res.status(200).json(data))
     .catch(next);
 };

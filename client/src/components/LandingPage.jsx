@@ -1,21 +1,16 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import httpClient from "../utils/api";
 
 const LandingPage = () => {
-  const api = import.meta.env.API || "http://localhost:4000/api";
   const [products, setProducts] = useState([])
   const [user, setUser] = useState({})
-  const token = localStorage.getItem("token");
+  const [init, setInit] = useState()
+  const [change, setChange] = useState()
 
   const getProducts = async () => {
     try {
-      const response = await axios.get(`${api}/product`, {
-        headers: {
-          "Content-Type": "Application/json",
-        },
-      });
+      const response = await httpClient.get('/product');
       const { data } = response;
       setProducts(data);
     } catch (error) {
@@ -31,12 +26,7 @@ const LandingPage = () => {
 
   const getUser = async () => {
     try {
-      const response = await axios.get(`${api}/user/info`, {
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.get('/user/info');
       const { data } = response;
       setUser(data);
     } catch (error) {
@@ -52,17 +42,31 @@ const LandingPage = () => {
 
   const buy = async (e, id) => {
     try {
-      const response = await axios.post(`${api}/product/buy/${id}`, {
-        headers: {
-          "Content-Type": "Application/json",
-          'Accept': 'Application/json',
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.post(`/product/buy/${id}`);
 
       console.log(response);
-      // const { data } = response;
-      // setUser(data);
+      const { data } = response;
+      setInit(data);
+      setChange(response.data.change)
+      alert(response.data.change_description)
+    } catch (error) {
+      const response = error.response.data;
+      console.log(error);
+      if (response.error) {
+        alert(response.error);
+      } else {
+        alert(response.message);
+      }
+    }
+  };
+  
+  const reset = async (e) => {
+    try {
+      const response = await httpClient.post('/user/reset');
+
+      console.log(response);
+      const { data } = response;
+      setInit(data);
     } catch (error) {
       const response = error.response.data;
       console.log(error);
@@ -74,18 +78,12 @@ const LandingPage = () => {
     }
   };
 
-
   const u_deposit = async (e, amount) => {
     try {
-      const response = await axios.put(`${api}/user`, {deposit: amount}, {
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.put('/user', {deposit: amount});
 
       const { data } = response;
-      setUser(data);
+      setInit(data);
     } catch (error) {
       const response = error.response.data;
       console.log(error);
@@ -100,7 +98,7 @@ const LandingPage = () => {
   useEffect(() => {
     getProducts();
     getUser();
-  }, []);
+  }, [init]);
 
   const { username, deposit, role } = user
   const coins = [5, 10, 20, 50, 100]
@@ -129,7 +127,9 @@ const LandingPage = () => {
             }
           </div>
         </div>
-        <p className="text-3xl text-yellow-500 my-8">Deposit: ¢{deposit}</p>
+        <span className="text-3xl text-yellow-500 my-3">Deposit: ¢{deposit}</span>
+        <span className="text-3xl text-green-500 my-3">Change: {change}</span>
+        <button onClick={reset} className="bg-red-500 rounded-2xl p-5 text-white hover:bg-red-800">Reset</button>
       </div>
     </div>
   );

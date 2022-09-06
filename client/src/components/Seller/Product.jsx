@@ -1,13 +1,11 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import httpClient from '../../utils/api';
 
 const Product = () => {
   const { id } = useParams();
   const history = useHistory();
-  const token = localStorage.getItem("token");
-  const api = import.meta.env.API || "https://express-vender.herokuapp.com/api";
   const [product, setProduct] = useState({})
   const [init, setInit] = useState(true)
   const [input, setInput] = useState({
@@ -27,12 +25,7 @@ const Product = () => {
 
   const getProduct = async (id) => {
     try {
-      const response = await axios.get(`${api}/product/${id}`, {
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.get(`/product/${id}`);
       const { data } = response;
       setProduct(data);
       console.log(data);
@@ -55,12 +48,7 @@ const Product = () => {
       amountAvailable: input.amountAvailable,
     };
     try {
-      const response = await axios.put(`${api}/product/${id}`, postData, {
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.put(`/product/${id}`, postData);
       const { data } = response;
       setInit(true)
       if (data.message) alert(data.message);
@@ -77,12 +65,7 @@ const Product = () => {
 
   const remove = async () => {
     try {
-      const response = await axios.delete(`${api}/product/${id}`, {
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.delete(`/product/${id}`);
       const { data } = response;
       setInit(true)
       history.push("/seller");

@@ -42,17 +42,13 @@ const userSchema = new Schema({
     // password: { type: String, required: true },
 }, { timestamps: true });
 
-userSchema.virtual('isVerified').get(function () {
-    return !!(this.verified || this.passwordReset);
-});
-
 userSchema.set('toJSON', {
     virtuals: true,
     versionKey: false,
     transform: function (doc, ret) {
         // remove these props when object is serialized
         delete ret._id;
-        delete ret.passwordHash;
+        delete ret.password;
     }
 });
 

@@ -1,10 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import httpClient from "../../utils/api";
 
 const Seller = () => {
-  const token = localStorage.getItem("token");
-  const api = import.meta.env.API || "http://localhost:4000/api";
   const username = localStorage.getItem("name");
   const [name, setName] = useState("");
   const [products, setProducts] = useState([]);
@@ -26,12 +24,7 @@ const Seller = () => {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get(`${api}/product`, {
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.get('/product');
       const { data } = response;
       setProducts(data);
       console.log(data);
@@ -53,19 +46,33 @@ const Seller = () => {
       cost: input.cost,
       amountAvailable: input.amountAvailable,
     };
+    
     try {
-      const response = await axios.post(`${api}/product`, postData, {
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`
-        },
-      });
+      const response = await httpClient.post('/product', postData);
       const { data } = response;
       setSubmitted(data.message)
       if (data.message) alert(data.message);
     } catch (error) {
       const response = error.response.data;
       console.log(error.response.data.message);
+      if (response.error) {
+        alert(response.error);
+      } else {
+        alert(response.message);
+      }
+    }
+  };
+
+  const reset = async (e) => {
+    try {
+      const response = await httpClient.post('/user/reset');
+
+      console.log(response);
+      // const { data } = response;
+      // setUser(data);
+    } catch (error) {
+      const response = error.response.data;
+      console.log(error);
       if (response.error) {
         alert(response.error);
       } else {
@@ -147,10 +154,8 @@ const Seller = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          <Link to="/register" className="text-md font-sm">
             Don&apos;t have an account?{" "}
-            <span className="text-lg font-bold underline">Register</span>
-          </Link>
+            <span className="text-lg font-bold underline"><button onClick={reset}>Reset</button></span>
         </div>
       </div>
     </div>
