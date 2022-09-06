@@ -9,6 +9,7 @@ module.exports = {
   register,
   getAll,
   getById,
+  getInfo,
   update,
   deposit,
   delete: _delete,
@@ -60,6 +61,11 @@ async function register(params) {
 async function getAll() {
   const users = await User.find();
   return users.map((x) => basicDetails(x));
+}
+
+async function getInfo(id) {
+  const user = await getUser(id);
+  return basicDetails(user);
 }
 
 async function getById(id) {

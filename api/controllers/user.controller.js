@@ -26,6 +26,13 @@ exports.getAll = (req, res, next) => {
     .catch(next);
 };
 
+exports.getInfo = (req, res, next) => {
+  userService
+    .getInfo(req.user.id)
+    .then((data) => res.json(data))
+    .catch(next);
+};
+
 exports.getById = (req, res, next) => {
   userService
     .getById(req.params.id)

@@ -9,6 +9,7 @@ const {
   login,
   deposit,
   reset,
+  getInfo,
 } = require("../controllers/user.controller");
 
 const {
@@ -21,6 +22,7 @@ const {
 router.post("/login", loginSchema, login);
 router.post("/register", registerSchema, register);
 router.get("/", authorize(), getAll);
+router.get("/info", authorize(), getInfo);
 router.get("/:id", authorize(), getById);
 router.post("/reset", authorize("buyer"), reset);
 router.put("/:id", authorize(), updateSchema, update);
