@@ -38,10 +38,9 @@ async function _delete(sellerId, productId) {
   product.remove();
 }
 
-async function buyProduct(buyerId, productId) {
+async function buyProduct(buyerId, productId, amount) {
   const user = await getUser(buyerId);
   const product = await getProduct(productId);
-  const amount = 1
   const { cost, amountAvailable } = product;
 
   const total_cost = cost * amount;

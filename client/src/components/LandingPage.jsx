@@ -42,7 +42,7 @@ const LandingPage = () => {
 
   const buy = async (e, id) => {
     try {
-      const response = await httpClient.post(`/product/buy/${id}`);
+      const response = await httpClient.post(`/product/buy/${id}`, {amount: 1});
 
       console.log(response);
       const { data } = response;
