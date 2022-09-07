@@ -1,16 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Menu from "./Menu";
 import Drawer from "./Drawer";
+import httpClient from "../../utils/api";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const history = useHistory();
-  const authorized = localStorage.getItem("token");
+  const auth = localStorage.getItem("token");
+  const [authorized, setAuthorized] = useState(auth)
 
-  const logout = () => {
-    localStorage.clear();
-    history.push("/");
+  useEffect(() => {
+    
+  }, [])
+  
+
+  const logout = async () => {
+    try {
+      const response = await httpClient.get('/user/logout/all');
+
+      const { data } = response;
+      localStorage.clear();
+      history.push("/");
+      setAuthorized('')
+      alert(response.data.message)
+    } catch (error) {
+      const response = error.response.data;
+      console.log(error);
+      if (response.error) {
+        alert(response.error);
+      } else {
+        alert(response.message);
+      }
+    }
   };
 
   return (

@@ -1,12 +1,23 @@
 ﻿const userService = require("../services/user.service");
+const blacklistToken = require("../_middleware/blacklist-token");
 
 exports.login = (req, res, next) => {
   const { username, password } = req.body;
   userService
-    .login({ username, password })
+    .login({ username, password }, req)
     .then(({ ...user }) => {
       res.json(user);
     })
+    .catch(next);
+};
+
+exports.logoutAll = (req, res, next) => {
+  // await blacklistToken(req, res, next)
+  userService
+    .logoutAll(req.user.id)
+    .then(() =>
+      res.status(201).json({message: "You have successfully logged out from all devices"})
+    )
     .catch(next);
 };
 

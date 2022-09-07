@@ -3,10 +3,14 @@ const bcrypt = require("bcryptjs");
 const db = require("../_helpers/db");
 const User = require("../models/user.model");
 const { secret } = require("../_helpers/config");
+const { createToken } = require("../_helpers/token");
+const UserLogin = require("../models/user-login.model");
+const blacklistToken = require("../_middleware/blacklist-token");
 
 module.exports = {
   login,
   register,
+  logoutAll,
   getAll,
   getById,
   getInfo,
@@ -17,20 +21,47 @@ module.exports = {
   reset
 };
 
-async function login({ username, password }) {
+async function login({ username, password }, req) {
   const user = await User.findOne({ username });
   if (!user || !bcrypt.compareSync(password, user.password)) {
     throw "Usename or password is incorrect";
   }
 
+  const session = await UserLogin.findOne({ user_id: user.id, token_deleted: false })
+  if (session) throw "There is already an active session using your account"
+
   // authentication successful so generate jwt and refresh tokens
-  const token = generateJwtToken(user);
+  const token = await generateJwtToken(user, req);
 
   // return basic details and tokens
   return {
     ...basicDetails(user),
     token,
   };
+}
+
+async function logoutAll( id) {
+  // // with exception of the current session
+  // const user_logins = await UserLogin.find({
+  //   user_id: user.id,
+  //   logged_out: false,
+  //   token_deleted: true,
+  // });
+
+  const user_logins = await UserLogin.find({
+    user_id: id,
+    logged_out: false,
+  });
+  if (!user_logins) throw "You do not have an active session"
+  user_logins.forEach(async (login) => {
+    if (login) {
+      login.logged_out = true;
+      login.token_deleted = true;
+      await login.save();
+    }
+  });
+
+  // blacklist the current token
 }
 
 async function register(params) {
@@ -127,9 +158,9 @@ function hash(password) {
   return bcrypt.hashSync(password, 10);
 }
 
-function generateJwtToken(user) {
-  // create a jwt token containing the user id that expires in 15 minutes
-  return jwt.sign({ sub: user.id, id: user.id }, secret, {
+async function generateJwtToken(user, req) {
+  // create a jwt token containing the user id that expires in 45 minutes
+  return jwt.sign({ sub: user.id, id: user.id, token_id: await createToken(req, user) }, secret, {
     expiresIn: "45m",
   });
 }

@@ -99,6 +99,10 @@ const LandingPage = () => {
     getProducts();
     getUser();
   }, [init]);
+  
+  // useEffect(() => {
+  //   getUser();
+  // }, [])
 
   const { username, deposit, role } = user
   const coins = [5, 10, 20, 50, 100]

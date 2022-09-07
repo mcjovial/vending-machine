@@ -10,6 +10,7 @@ const {
   deposit,
   reset,
   getInfo,
+  logoutAll,
 } = require("../controllers/user.controller");
 
 const {
@@ -18,10 +19,12 @@ const {
   updateSchema,
   depositSchema,
 } = require("../validations/user.validation");
+const authenticateToken = require("../_middleware/authenticate-token");
 
 // routes
 router.post("/login", loginSchema, login);
 router.post("/register", registerSchema, register);
+router.get("/logout/all", authorize(), logoutAll);
 router.get("/", authorize(), getAll);
 router.get("/info", authorize(), getInfo);
 router.get("/:id", authorize(), getById);
