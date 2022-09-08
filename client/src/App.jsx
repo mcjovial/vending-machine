@@ -7,7 +7,6 @@ import {
   useHistory,
 } from 'react-router-dom';
 
-import './app.css';
 import Header from './components/UI/Header';
 import LandingPage from './components/LandingPage';
 import Register from './components/Authentication/Register';
