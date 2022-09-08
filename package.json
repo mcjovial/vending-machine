@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/mcjovial/vending-machine/issues"
   },
-  "homepage": "https://github.com/mcjovial/vending-machine#readme"
+  "homepage": "https://github.com/mcjovial/vending-machine#readme",
+  "dependencies": {
+    "dotenv": "^16.0.2"
+  }
 }

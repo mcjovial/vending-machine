@@ -85,12 +85,6 @@ const Register = ({ setAuthorized }) => {
             name="password"
             onChange={(e) => inputChange(e)}
           />
-
-          <div className="flex justify-end w-full">
-            <Link to="/password-reset" className="h-12 w-32">
-              Forgot password?
-            </Link>
-          </div>
         </div>
       </div>
       <div className="flex justify-end w-full h-full">
