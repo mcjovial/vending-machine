@@ -49,14 +49,14 @@ const LandingPage = () => {
         amount: 1,
       });
 
-      console.log(response);
+      console.log('change description:', response.data.change_description);
       const { data } = response;
       setInit(data);
-      setChange(response.data.change);
       alert(response.data.change_description);
     } catch (error) {
       const response = error.response.data;
       console.log(error);
+      console.log(response);
       if (response.error) {
         alert(response.error);
       } else {

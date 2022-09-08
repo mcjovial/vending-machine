@@ -55,7 +55,6 @@ const Header = () => {
             ''
           ) : (
             <Link
-              disable
               to='/'
               className='text-xl font-medium text-yellow-400'
             >
@@ -66,7 +65,6 @@ const Header = () => {
             ''
           ) : (
             <Link
-              disable
               to='/seller'
               className='text-xl font-medium text-yellow-400'
             >

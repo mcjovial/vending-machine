@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/UI/Header';
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/BuyerPage';
 import Register from './components/Authentication/Register';
 import Login from './components/Authentication/Login';
 import ProtectedRoute from './components/ProtectedRoute';
