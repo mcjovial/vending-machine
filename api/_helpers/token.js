@@ -1,7 +1,7 @@
 var jwt = require("jsonwebtoken");
 var customId = require("custom-id");
 const UserLogin = require("../models/user-login.model");
-const { secret } = require("./config");
+const { secret, env } = require("./config");
 
 var createToken = async function (req, user) {
   const token_id = customId({
@@ -10,17 +10,19 @@ var createToken = async function (req, user) {
     randomLength: 4,
   });
 
-  var ip =
+  var ip = env != 'test' ?
     (req.headers["x-forwarded-for"] || "").split(",").pop().trim() ||
     req.connection.remoteAddress ||
     req.socket.remoteAddress ||
-    req.connection.socket.remoteAddress;
+    req.connection.socket.remoteAddress : 'fff:0.0.0.0'
+  
+  var device = env != 'test' ? req.headers["user-agent"] : 'test'
 
   const user_logins = await UserLogin.find({
     user_id: user.id,
     token_deleted: false,
     ip_address: ip,
-    device: req.headers["user-agent"],
+    device: device,
   });
 
   user_logins.forEach(async (login) => {
@@ -41,7 +43,7 @@ var createToken = async function (req, user) {
     token_id: token_id,
     token_secret: token_secret,
     ip_address: ip,
-    device: req.headers["user-agent"],
+    device: device,
   });
 
   return token_id;

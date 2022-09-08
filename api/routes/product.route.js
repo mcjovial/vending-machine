@@ -15,13 +15,14 @@ const {
   createProductSchema,
   updateProductSchema,
 } = require("../validations/product.validation");
+const authenticateToken = require("../_middleware/authenticate-token");
 
 router.post("/", authorize("seller"), createProductSchema, create);
 router.get("/", getAll);
 router.get("/:id", getById);
-router.post("/seller", authorize(), getSellerProducts);
-router.put("/:id", authorize("seller"), updateProductSchema, update);
-router.delete("/:id", authorize("seller"), _delete);
-router.post("/buy/:id", authorize("buyer"), buyProduct);
+router.post("/seller", authorize(), authenticateToken, getSellerProducts);
+router.put("/:id", authorize("seller"), authenticateToken, updateProductSchema, update);
+router.delete("/:id", authorize("seller"), authenticateToken, _delete);
+router.post("/buy/:id", authorize("buyer"), authenticateToken, buyProduct);
 
 module.exports = router;

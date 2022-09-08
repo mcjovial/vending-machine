@@ -5,7 +5,6 @@ const User = require("../models/user.model");
 const { secret } = require("../_helpers/config");
 const { createToken } = require("../_helpers/token");
 const UserLogin = require("../models/user-login.model");
-const blacklistToken = require("../_middleware/blacklist-token");
 
 module.exports = {
   login,
@@ -64,7 +63,8 @@ async function logoutAll( id) {
   // blacklist the current token
 }
 
-async function register(params) {
+async function register(req) {
+  const params = req.body
   // validate
   if (await User.findOne({ username: params.username })) {
     throw "Username is already registered!";
@@ -80,7 +80,7 @@ async function register(params) {
   await user.save();
 
   // authentication successful so generate jwt and refresh tokens
-  const token = generateJwtToken(user);
+  const token = await generateJwtToken(user, req);
 
   // return basic details and tokens
   return {
@@ -104,7 +104,14 @@ async function getById(id) {
   return basicDetails(user);
 }
 
-async function update(id, params) {
+async function update(req) {
+  const id = req.params.id
+  const params = req.body
+  const userId = req.user.id
+
+  if (db.isValidId(id) != true) throw "Invalid User Id"
+  if (id !== userId) throw "Sorry you can not update someone elses info"
+
   const user = await getUser(id);
   // validate (if username was changed)
   if (params.username === user.username) {
@@ -159,9 +166,9 @@ function hash(password) {
 }
 
 async function generateJwtToken(user, req) {
-  // create a jwt token containing the user id that expires in 45 minutes
+  // create a jwt token containing the user id that expires in 30 days
   return jwt.sign({ sub: user.id, id: user.id, token_id: await createToken(req, user) }, secret, {
-    expiresIn: "45m",
+    expiresIn: "30d",
   });
 }
 

@@ -1,5 +1,4 @@
 ﻿const userService = require("../services/user.service");
-const blacklistToken = require("../_middleware/blacklist-token");
 
 exports.login = (req, res, next) => {
   const { username, password } = req.body;
@@ -12,7 +11,6 @@ exports.login = (req, res, next) => {
 };
 
 exports.logoutAll = (req, res, next) => {
-  // await blacklistToken(req, res, next)
   userService
     .logoutAll(req.user.id)
     .then(() =>
@@ -23,7 +21,7 @@ exports.logoutAll = (req, res, next) => {
 
 exports.register = (req, res, next) => {
   userService
-    .register(req.body)
+    .register(req)
     .then((data) =>
       res.status(201).json(data)
     )
@@ -53,7 +51,7 @@ exports.getById = (req, res, next) => {
 
 exports.update = (req, res, next) => {
   userService
-    .update(req.params.id, req.body)
+    .update(req)
     .then((user) => res.json(user))
     .catch(next);
 };

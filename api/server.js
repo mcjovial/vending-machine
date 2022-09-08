@@ -1,11 +1,9 @@
 ﻿const app = require("./_helpers/express");
-const { connectDB } = require("./_helpers/db");
-const { port } = require("./_helpers/config");
-
-// connect mongoose
-connectDB()
 
 // start server
+const port =
+  process.env.NODE_ENV === "production" ? process.env.PORT || 80 : 4000;
 app.listen(port, () => {
-    console.log('Server listening on port ' + port);
+  console.log("Server listening on port " + port);
 });
+

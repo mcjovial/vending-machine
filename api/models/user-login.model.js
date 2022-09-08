@@ -10,6 +10,7 @@ const userLoginSchema = new Schema(
     ip_address: String,
     token_id: String,
     token_secret: String,
+    token: String,
     token_deleted: { type: Boolean, required: true, default: false },
     device: String,
   },

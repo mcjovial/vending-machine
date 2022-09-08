@@ -24,13 +24,13 @@ const authenticateToken = require("../_middleware/authenticate-token");
 // routes
 router.post("/login", loginSchema, login);
 router.post("/register", registerSchema, register);
-router.get("/logout/all", authorize(), logoutAll);
-router.get("/", authorize(), getAll);
-router.get("/info", authorize(), getInfo);
-router.get("/:id", authorize(), getById);
-router.post("/reset", authorize(), reset);
-router.put("/:id", authorize(), updateSchema, update);
-router.put("/", authorize("buyer"), depositSchema, deposit);
-router.delete("/:id", authorize(), _delete);
+router.get("/logout/all", authorize(), authenticateToken, logoutAll);
+router.get("/", authorize(), authenticateToken, getAll);
+router.get("/info", authorize(), authenticateToken, getInfo);
+router.get("/:id", authorize(), authenticateToken, getById);
+router.post("/reset", authorize(), authenticateToken, reset);
+router.put("/:id", authorize(), authenticateToken, updateSchema, update);
+router.put("/", authorize("buyer"), authenticateToken, depositSchema, deposit);
+router.delete("/:id", authorize(), authenticateToken, _delete);
 
 module.exports = router;

@@ -1,8 +1,8 @@
 const request = require("supertest");
 const Product = require("../models/product.model");
 const User = require("../models/user.model");
-const { connectDB, disconnectDb } = require("../_helpers/db");
 const app = require("../_helpers/express");
+const { connectDB } = require("./setup");
 
 // Connect to Mongoose
 beforeAll(async () => {
@@ -46,7 +46,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(seller);
     expect(seller_response.status).toBe(201);
-    console.log("seller", seller_response.body);
 
     const product = {
       productName: "cocacola",
@@ -73,8 +72,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(buyer);
     expect(buyer_response.status).toBe(201);
-    console.log("buyer", buyer_response.body);
-    console.log("product", product_response.body.product._id);
 
     const order = { amount: 1 };
     // buy drink
@@ -88,7 +85,6 @@ describe("POST /buy", () => {
         order.amount * product_response.body.product.cost
       }. Available: $${buyer_response.body.deposit}`
     );
-    console.log(response.error);
   });
 
   it("should report 'Insufficient product' with error 400 when ordered product count exceeds amount available", async () => {
@@ -97,7 +93,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(seller);
     expect(seller_response.status).toBe(201);
-    console.log("seller", seller_response.body);
 
     const product = {
       productName: "cocacola",
@@ -111,7 +106,6 @@ describe("POST /buy", () => {
       .post("/api/product")
       .set("Authorization", `Bearer ${seller_response.body.token}`)
       .send(product);
-    console.log(product_response.error);
     expect(product_response.status).toBe(201);
     expect(product_response.body.message).toBe(
       "Product created successfully"
@@ -125,8 +119,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(buyer);
     expect(buyer_response.status).toBe(201);
-    console.log("buyer", buyer_response.body);
-    console.log("product", product_response.body.product._id);
 
     const amount = { deposit: 100 };
     const deposit_response = await request(app)
@@ -156,7 +148,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(seller);
     expect(seller_response.status).toBe(201);
-    console.log("seller", seller_response.body);
 
     const product = {
       productName: "cocacola",
@@ -170,7 +161,6 @@ describe("POST /buy", () => {
       .post("/api/product")
       .set("Authorization", `Bearer ${seller_response.body.token}`)
       .send(product);
-    console.log(product_response.error);
     expect(product_response.status).toBe(201);
     expect(product_response.body.message).toBe(
       "Product created successfully"
@@ -184,8 +174,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(buyer);
     expect(buyer_response.status).toBe(201);
-    console.log("buyer", buyer_response.body);
-    console.log("product", product_response.body.product._id);
 
     const amount = { deposit: 100 };
     const deposit_response = await request(app)
@@ -214,7 +202,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(seller);
     expect(seller_response.status).toBe(201);
-    console.log("seller", seller_response.body);
 
     const product = {
       productName: "cocacola",
@@ -228,7 +215,6 @@ describe("POST /buy", () => {
       .post("/api/product")
       .set("Authorization", `Bearer ${seller_response.body.token}`)
       .send(product);
-    console.log(product_response.error);
     expect(product_response.status).toBe(201);
     expect(product_response.body.message).toBe(
       "Product created successfully"
@@ -242,8 +228,6 @@ describe("POST /buy", () => {
       .post("/api/user/register")
       .send(buyer);
     expect(buyer_response.status).toBe(201);
-    console.log("buyer", buyer_response.body);
-    console.log("product", product_response.body.product._id);
 
     const amount = { deposit: 100 };
     const deposit_response = await request(app)
@@ -263,7 +247,6 @@ describe("POST /buy", () => {
       .set("Authorization", `Bearer ${buyer_response.body.token}`)
       .send(order);
     expect(response.status).toBe(200);
-    console.log(response.body.change_description);
     expect(response.body.message).toBe(`Thank you. Your purchase was successful!`);
     expect(response.body.total_spent).toBe(`¢${product_response.body.product.cost * order.amount}`);
     expect(response.body.products_purchased).toBe(`${product_response.body.product.productName} [${order.amount} units]`);

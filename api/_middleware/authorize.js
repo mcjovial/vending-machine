@@ -1,7 +1,7 @@
 const jwt = require("express-jwt");
 const { secret } = require("../_helpers/config");
 const User = require("../models/user.model");
-const authenticateToken = require("./authenticate-token");
+// const authenticateToken = require("./authenticate-token");
 
 module.exports = authorize;
 
@@ -25,11 +25,6 @@ function authorize(roles = []) {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      // authentication and authorization successful
-        await authenticateToken(req, res, next, secret);
-        
-        console.log('lets try', req.user);
-        
       req.user.role = user.role;
       next();
     },

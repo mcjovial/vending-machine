@@ -1,8 +1,7 @@
 const request = require("supertest");
-const Product = require("../models/product.model");
 const User = require("../models/user.model");
-const { connectDB, disconnectDb } = require("../_helpers/db");
 const app = require("../_helpers/express");
+const { connectDB } = require("./setup");
 
 // Connect to Mongoose
 beforeAll(async () => {
@@ -24,7 +23,7 @@ describe("POST /deposit", () => {
     await User.remove({});
   });
 
-  it("should a deposit balance greater or equal to amount deposited when request is successful", async () => {
+  it("should return a deposit balance greater or equal to amount deposited when request is successful", async () => {
     // create new buyer
     const buyer_response = await request(app)
       .post("/api/user/register")
@@ -49,7 +48,6 @@ describe("POST /deposit", () => {
       .post("/api/user/register")
       .send(buyer);
     expect(buyer_response.status).toBe(201);
-    console.log("buyer", buyer_response.body);
 
     const amount = { deposit: 60 };
     const deposit_response = await request(app)
@@ -69,7 +67,6 @@ describe("POST /deposit", () => {
       .post("/api/user/register")
       .send(buyer);
     expect(buyer_response.status).toBe(201);
-    console.log("buyer", buyer_response.body);
 
     const amount = { deposit: "" };
     const deposit_response = await request(app)
@@ -78,7 +75,6 @@ describe("POST /deposit", () => {
       .send(amount);
 
     expect(deposit_response.status).toBe(400);
-    console.log(deposit_response.body.message);
     expect(deposit_response.body.message).toEqual(
       expect.stringContaining('"deposit" must be a number')
     );
