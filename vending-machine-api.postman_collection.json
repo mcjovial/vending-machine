@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "fd3f6cf4-192e-4469-9bdb-8dce2538e43d",
+		"name": "vending-machine-api",
+		"description": "``` javascript\n/**\n * @author Elias Emmanuel\n * @mail emmanuelelias455@gmail.com\n * @linkedin https://www.linkedin.com/in/mcjovial/\n * @github https://www.github.com/mcjovial/\n * @project Vending Machine Nodejs Rest API\n * @date 08/09/2022\n * @license No Licence\n * \n * This is a demo purpose project.\n * \n **/\n\n```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18475215"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"mcjovial\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/user/login",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"dawali\",\n    \"password\": \"password\",\n    \"role\": \"seller\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/user/register",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout from all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODQ4MlNUQ1kyNzg3WVJNRSIsImlhdCI6MTY2MjY1NjU2NywiZXhwIjoxNjYyNjU5MjY3fQ.SgaPP3mu5c0G31p8h2ItrrnAMZk2Q_Bd2SEX2V3qmh8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/user/logout/all",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"logout",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiNTUyNVpZWEY1NTE1RFlBViIsImlhdCI6MTY2MjY0MTg3MCwiZXhwIjoxNjYyNjQ0NTcwfQ.SVQtkVTOaDwv1GMeY2mlnEDurI0K93XpKA0UnklsGRk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/user/",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/user/6314e07f1766c17e8e7d72a6",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6314e07f1766c17e8e7d72a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/user/info",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"mcjovial\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/user/6314e07f1766c17e8e7d72a6",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6314e07f1766c17e8e7d72a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User deposit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"deposit\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/user/",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzEzODk4ZmE5ZDQzYjljZmIzNjBiNzMiLCJpZCI6IjYzMTM4OThmYTlkNDNiOWNmYjM2MGI3MyIsImlhdCI6MTY2MjIyNTIwOCwiZXhwIjoxNjYyMjI3OTA4fQ.gVdP4L8vOq_W_luWIxccZ9BizTYB6RE6bHjXHJPv6wc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/user/6313898fa9d43b9cfb360b73",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6313898fa9d43b9cfb360b73"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset deposit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzEzODkxMjU5M2FmNDdmMTIxMjc0NTAiLCJpZCI6IjYzMTM4OTEyNTkzYWY0N2YxMjEyNzQ1MCIsImlhdCI6MTY2MjI4OTA4MCwiZXhwIjoxNjYyMjkxNzgwfQ.f2BIjq-EFDtvi1W8dbE_esBhcRw_jRA4_OzFupLozlg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/user/reset",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\": \"sprite43\",\n    \"description\": \"milk drink\",\n    \"cost\": \"30\",\n    \"amountAvailable\": \"5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/product",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/product",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/product/63139eaf8d8bc8c4285e1552",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"63139eaf8d8bc8c4285e1552"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get seller products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/product/seller",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"seller"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsImlhdCI6MTY2MjQzMDkxMiwiZXhwIjoxNjYyNDMzNjEyfQ.i4QAJx3D7vwq-AaTU-nAVJWd8ZIXfeCJyiLXhH0vA8A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\": \"cocacola\",\n    \"description\": \"\",\n    \"cost\": \"\",\n    \"amountAvailable\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/product/631577e8c617d72388af1bb8",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"631577e8c617d72388af1bb8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HEROKU}}/api/product/631a211ae1bfaf527626db28",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"631a211ae1bfaf527626db28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buy product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/product/buy/63154516966a872c79243cef",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"buy",
+								"63154516966a872c79243cef"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buy product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/api/product/buy/63154516966a872c79243cef",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"product",
+										"buy",
+										"63154516966a872c79243cef"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "HEROKU",
+			"value": "https://express-vender.herokuapp.com"
+		}
+	]
+}
