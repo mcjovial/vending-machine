@@ -10,9 +10,18 @@ exports.login = (req, res, next) => {
     .catch(next);
 };
 
+exports.logout = (req, res, next) => {
+  userService
+    .logout(req.user.id, req.user.token_id)
+    .then(() =>
+      res.status(201).json({message: "Logout successful"})
+    )
+    .catch(next);
+};
+
 exports.logoutAll = (req, res, next) => {
   userService
-    .logoutAll(req.user.id)
+    .logoutAll(req.body)
     .then(() =>
       res.status(201).json({message: "You have successfully logged out from all devices"})
     )

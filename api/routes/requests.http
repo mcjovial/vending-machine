@@ -1,0 +1,7 @@
+### Get all products
+GET http://localhost:4000/api/product
+
+
+### Get all seller's products
+POST http://localhost:4000/api/product/seller
+document

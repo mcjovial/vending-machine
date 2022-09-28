@@ -9,6 +9,7 @@ const UserLogin = require("../models/user-login.model");
 module.exports = {
   login,
   register,
+  logout,
   logoutAll,
   getAll,
   getById,
@@ -39,18 +40,15 @@ async function login({ username, password }, req) {
   };
 }
 
-async function logoutAll( id) {
-  // // with exception of the current session
-  // const user_logins = await UserLogin.find({
-  //   user_id: user.id,
-  //   logged_out: false,
-  //   token_deleted: true,
-  // });
-
+async function logoutAll(body) {
+  const { username } = body
+  const user = await User.findOne({ username })
+  
   const user_logins = await UserLogin.find({
-    user_id: id,
+    user_id: user.id,
     logged_out: false,
   });
+
   if (!user_logins) throw "You do not have an active session"
   user_logins.forEach(async (login) => {
     if (login) {
@@ -59,8 +57,25 @@ async function logoutAll( id) {
       await login.save();
     }
   });
+}
+
+async function logout(userId, token_id) {
+  const user_login = await UserLogin.findOne({
+    user_id: userId,
+    token_id,
+    logged_out: false,
+  });
+console.log(user_login);
+  if (!user_login) throw "You do not have an active session"
+
+  user_login.logged_out = true;
+  user_login.token_deleted = true;
+  await user_login.save();
 
   // blacklist the current token
+  return await BlacklistToken.create({
+    token: user_login.token,
+  });
 }
 
 async function register(req) {

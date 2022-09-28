@@ -35,10 +35,10 @@ const userSchema = new Schema({
         lowercase: true,
         immutable: true 
     },
-    products: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "products",
-    },
+    // products: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "products",
+    // },
     // password: { type: String, required: true },
 }, { timestamps: true });
 

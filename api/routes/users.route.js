@@ -11,6 +11,7 @@ const {
   reset,
   getInfo,
   logoutAll,
+  logout,
 } = require("../controllers/user.controller");
 
 const {
@@ -24,7 +25,8 @@ const authenticateToken = require("../_middleware/authenticate-token");
 // routes
 router.post("/login", loginSchema, login);
 router.post("/register", registerSchema, register);
-router.get("/logout/all", authorize(), authenticateToken, logoutAll);
+router.post("/logout/all", logoutAll);
+router.get("/logout", authorize(), authenticateToken, logout);
 router.get("/", authorize(), authenticateToken, getAll);
 router.get("/info", authorize(), authenticateToken, getInfo);
 router.get("/:id", authorize(), authenticateToken, getById);
