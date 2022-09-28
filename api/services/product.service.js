@@ -8,8 +8,8 @@ async function create(id, params) {
   const product = await Product.create(params);
   return {
     product,
-    message: "Product created successfully"
-  }
+    message: "Product created successfully",
+  };
 }
 
 async function getAll() {
@@ -21,7 +21,7 @@ async function getById(id) {
 }
 
 async function sellerProducts(id) {
-  return await Product.find({seller_id: id});
+  return await Product.find({ seller_id: id });
 }
 
 async function update(sellerId, productId, params) {
@@ -47,8 +47,10 @@ async function buyProduct(buyerId, productId, amount) {
   let change = user.deposit - total_cost;
 
   if (amountAvailable === 0) throw `Sorry this Product Is Not Available`;
-  if (amountAvailable < amount) throw `Insufficient Product Numbers. Currently max: ${amountAvailable}`;
-  if (user.deposit < total_cost) throw `Insufficient Deposit Balance. Requires: $${total_cost}. Available: $${user.deposit}`;
+  if (amountAvailable < amount)
+    throw `Insufficient Product Numbers. Currently max: ${amountAvailable}`;
+  if (user.deposit < total_cost)
+    throw `Insufficient Deposit Balance. Requires: ¢${total_cost}. Available: ¢${user.deposit}`;
 
   //calculation
   let change_arr = [100, 50, 20, 10, 5];
@@ -125,5 +127,5 @@ module.exports = {
   update,
   delete: _delete,
   buyProduct,
-  sellerProducts
+  sellerProducts,
 };

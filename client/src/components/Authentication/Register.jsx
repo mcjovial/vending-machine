@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import httpClient from "../../utils/api";
+import { toast } from 'react-toastify';
 
 const Register = ({ authorized, role, setAuthorized }) => {
   const history = useHistory();
@@ -50,12 +51,13 @@ const Register = ({ authorized, role, setAuthorized }) => {
       } else {
         history.push("/");
       }
-
-      console.log(response);
     } catch (error) {
-      console.log(error);
       const response = error.response.data;
-      alert(response.error);
+      if (response.error) {
+        toast.error(response.error)
+      } else {
+        toast.error(response.message)
+      }
     }
   };
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import httpClient from '../../utils/api';
+import { toast } from 'react-toastify';
 
 const Seller = () => {
   const username = localStorage.getItem('name');
@@ -16,7 +17,6 @@ const Seller = () => {
 
   const token = localStorage.getItem('token');
   httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  // console.log(httpClient.defaults.headers, token);
 
   const inputChange = (e) => {
     e.preventDefault();
@@ -31,14 +31,12 @@ const Seller = () => {
       const response = await httpClient.post('/product/seller');
       const { data } = response;
       setProducts(data);
-      console.log(data);
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };
@@ -55,14 +53,13 @@ const Seller = () => {
       const response = await httpClient.post('/product', postData);
       const { data } = response;
       setSubmitted(data.message);
-      if (data.message) alert(data.message);
+      if (data.message) toast(data.message);
     } catch (error) {
       const response = error.response.data;
-      console.log(error.response.data.message);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };

@@ -66,7 +66,7 @@ async function logout(userId, token_id) {
     token_id,
     logged_out: false,
   });
-console.log(user_login);
+
   if (!user_login) throw "You do not have an active session"
 
   user_login.logged_out = true;

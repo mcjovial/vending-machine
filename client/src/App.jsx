@@ -17,13 +17,15 @@ import Product from './components/Seller/Product';
 import SellerRoute from './components/SellerRoute';
 import BuyerRoute from './components/BuyerRoute';
 import LogoutAll from './components/Authentication/LogoutAll';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
   const [authorized, setAuthorized] = useState(token);
-  console.log(authorized, token);
+
 
   return (
     <div className='h-full'>
@@ -68,6 +70,7 @@ const App = () => {
           </Route> */}
         </Switch>
       </Router>
+      <ToastContainer />
     </div>
   );
 };

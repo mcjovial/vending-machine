@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import httpClient from '../../utils/api';
+import { toast } from 'react-toastify';
 
 const Product = () => {
   const { id } = useParams();
@@ -17,7 +18,6 @@ const Product = () => {
 
   const token = localStorage.getItem('token');
   httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  console.log(httpClient.defaults.headers, token);
 
   const inputChange = (e) => {
     e.preventDefault();
@@ -32,14 +32,12 @@ const Product = () => {
       const response = await httpClient.get(`/product/${id}`);
       const { data } = response;
       setProduct(data);
-      console.log(data);
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error);
       } else {
-        alert(response.message);
+        toast.error(response.message);
       }
     }
   };
@@ -55,15 +53,13 @@ const Product = () => {
       const response = await httpClient.put(`/product/${id}`, postData);
       const { data } = response;
       setInit(true);
-      console.log(response);
-      alert('Product updated successfully!');
+      toast('Product updated successfully!');
     } catch (error) {
       const response = error.response.data;
-      console.log(error.response.data.message);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error);
       } else {
-        alert(response.message);
+        toast.error(response.message);
       }
     }
   };
@@ -74,14 +70,13 @@ const Product = () => {
       const { data } = response;
       setInit(true);
       history.push('/seller');
-      if (data.message) alert(data.message);
+      if (data.message) toast(data.message);
     } catch (error) {
       const response = error.response.data;
-      console.log(error.response.data.message);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };
@@ -157,7 +152,9 @@ const Product = () => {
         </div>
       </div>
       <div className='flex justify-center'>
-        <Link to='#' className='text-md font-sm'> Edit Product
+        <Link to='#' className='text-md font-sm'>
+          {' '}
+          Edit Product
         </Link>
       </div>
     </div>

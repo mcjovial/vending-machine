@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import httpClient from '../../utils/api';
+import { toast } from 'react-toastify';
 
 const LogoutAll = ({ authorized, role, setAuthorized }) => {
   const history = useHistory();
@@ -35,14 +36,13 @@ const LogoutAll = ({ authorized, role, setAuthorized }) => {
       const response = await httpClient.post('/user/logout/all', postData);
       const { data } = response;
       history.push('/login');
-      alert(data.message);
+      toast(data.message);
     } catch (error) {
       const response = error.response.data;
-      console.log(error.response.data);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };

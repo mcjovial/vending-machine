@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import httpClient from '../utils/api';
+import { toast } from 'react-toastify';
 
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,6 @@ const LandingPage = () => {
 
   const token = localStorage.getItem('token');
   httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  // console.log(httpClient.defaults.headers, token);
 
   const getProducts = async () => {
     try {
@@ -18,11 +18,10 @@ const LandingPage = () => {
       setProducts(data);
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };
@@ -34,11 +33,10 @@ const LandingPage = () => {
       setUser(data);
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };
@@ -49,18 +47,17 @@ const LandingPage = () => {
         amount: 1,
       });
 
-      console.log('change description:', response.data.change_description);
       const { data } = response;
       setInit(data);
-      alert(response.data.change_description);
+      toast(`Change: ${data.change_description} 
+            Total: ${data.change}`);
+      // alert(response.data.change_description);
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
-      console.log(response);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };
@@ -71,14 +68,13 @@ const LandingPage = () => {
 
       const { data } = response;
       setInit(data);
-      alert('Account reset successful');
+      toast('Account reset successful');
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };
@@ -89,14 +85,13 @@ const LandingPage = () => {
 
       const { data } = response;
       setInit(data);
-      alert('Amount deposited successfully');
+      toast('Amount deposited successfully');
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };

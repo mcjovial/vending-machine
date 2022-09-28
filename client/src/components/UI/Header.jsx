@@ -3,9 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import Menu from './Menu';
 import Drawer from './Drawer';
 import httpClient from '../../utils/api';
+import { toast } from 'react-toastify';
 
 const Header = ({ authorized, role, setAuthorized }) => {
-  console.log(authorized);
   httpClient.defaults.headers.common['Authorization'] = `Bearer ${authorized}`;
 
   const [open, setOpen] = useState(false);
@@ -24,14 +24,13 @@ const Header = ({ authorized, role, setAuthorized }) => {
       localStorage.clear();
       history.push('/');
       setAuthorized('');
-      alert(data.message);
+      toast(data.message);
     } catch (error) {
       const response = error.response.data;
-      console.log(error);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };

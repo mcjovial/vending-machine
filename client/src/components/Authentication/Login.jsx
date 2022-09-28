@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import httpClient from '../../utils/api';
+import { toast } from 'react-toastify';
 
 const Login = ({ authorized, role, setAuthorized }) => {
   const history = useHistory();
@@ -35,7 +36,6 @@ const Login = ({ authorized, role, setAuthorized }) => {
     };
     try {
       const response = await httpClient.post('/user/login', postData);
-      console.log(response);
       const { data } = response;
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
@@ -48,11 +48,10 @@ const Login = ({ authorized, role, setAuthorized }) => {
       }
     } catch (error) {
       const response = error.response.data;
-      console.log(error.response.data);
       if (response.error) {
-        alert(response.error);
+        toast.error(response.error)
       } else {
-        alert(response.message);
+        toast.error(response.message)
       }
     }
   };
