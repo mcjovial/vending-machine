@@ -4,7 +4,8 @@ import Menu from './Menu';
 import Drawer from './Drawer';
 import httpClient from '../../utils/api';
 
-const Header = ({authorized, role, setAuthorized}) => {
+const Header = ({ authorized, role, setAuthorized }) => {
+  console.log(authorized);
   httpClient.defaults.headers.common['Authorization'] = `Bearer ${authorized}`;
 
   const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ const Header = ({authorized, role, setAuthorized}) => {
 
   const logout = async () => {
     try {
-      const response = await httpClient.get('/user/logout/all');
+      const response = await httpClient.get('/user/logout/');
 
       const { data } = response;
       localStorage.clear();

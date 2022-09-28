@@ -2,7 +2,7 @@ import axios from "axios";
 // const token = localStorage.getItem("token");
 
 var httpClient = axios.create({
-  baseURL: "https://express-vender.herokuapp.com/api"
+  baseURL: "http://localhost:4000/api"
 });
 
 // httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;

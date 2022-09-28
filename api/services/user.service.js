@@ -5,6 +5,7 @@ const User = require("../models/user.model");
 const { secret } = require("../_helpers/config");
 const { createToken } = require("../_helpers/token");
 const UserLogin = require("../models/user-login.model");
+const BlacklistToken = require("../models/blacklist-token.model");
 
 module.exports = {
   login,

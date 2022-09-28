@@ -16,13 +16,14 @@ import Seller from './components/Seller/Seller';
 import Product from './components/Seller/Product';
 import SellerRoute from './components/SellerRoute';
 import BuyerRoute from './components/BuyerRoute';
+import LogoutAll from './components/Authentication/LogoutAll';
 
 const App = () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
 
   const [authorized, setAuthorized] = useState(token);
-  console.log(authorized);
+  console.log(authorized, token);
 
   return (
     <div className='h-full'>
@@ -47,6 +48,13 @@ const App = () => {
               role={role}
               setAuthorized={setAuthorized}
             ></Login>
+          </Route>
+          <Route path='/logout/all'>
+            <LogoutAll
+              authorized={authorized}
+              role={role}
+              setAuthorized={setAuthorized}
+            ></LogoutAll>
           </Route>
           <BuyerRoute exact path='/' component={LandingPage} />
           <SellerRoute exact path='/seller' component={Seller} />

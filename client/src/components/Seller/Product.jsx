@@ -93,7 +93,7 @@ const Product = () => {
   const { productName, description, cost, amountAvailable } = product;
 
   return (
-    <div className='w-full h-full bg-yellow-400 p-8 py-12 space-y-12 px-8'>
+    <div className='w-full min-h-screen bg-yellow-400 p-8 py-12 space-y-12 px-8'>
       <div className='flex flex-col items-center space-y-8'>
         <p className='text-xl font-medium'>Edit {productName}</p>
       </div>
