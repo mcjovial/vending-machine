@@ -15,9 +15,13 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Seller from './components/Seller/Seller';
 import Product from './components/Seller/Product';
 import SellerRoute from './components/SellerRoute';
+import BuyerRoute from './components/BuyerRoute';
 
 const App = () => {
-  const [authorized, setAuthorized] = useState(false);
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  const [authorized, setAuthorized] = useState(token);
   console.log(authorized);
 
   return (
@@ -26,22 +30,25 @@ const App = () => {
         <Header
           className='display-block'
           authorized={authorized}
+          role={role}
           setAuthorized={setAuthorized}
         ></Header>
         <Switch>
           <Route path='/register'>
             <Register
               authorized={authorized}
+              role={role}
               setAuthorized={setAuthorized}
             ></Register>
           </Route>
           <Route path='/login'>
             <Login
               authorized={authorized}
+              role={role}
               setAuthorized={setAuthorized}
             ></Login>
           </Route>
-          <ProtectedRoute exact path='/' component={LandingPage} />
+          <BuyerRoute exact path='/' component={LandingPage} />
           <SellerRoute exact path='/seller' component={Seller} />
           <ProtectedRoute exact path='/product/:id' component={Product} />
 

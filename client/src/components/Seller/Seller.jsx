@@ -28,7 +28,7 @@ const Seller = () => {
 
   const getProducts = async () => {
     try {
-      const response = await httpClient.get('/product');
+      const response = await httpClient.post('/product/seller');
       const { data } = response;
       setProducts(data);
       console.log(data);

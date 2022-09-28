@@ -4,18 +4,16 @@ import Menu from './Menu';
 import Drawer from './Drawer';
 import httpClient from '../../utils/api';
 
-const Header = () => {
-  const token = localStorage.getItem('token');
-  const role = localStorage.getItem('role');
-  httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+const Header = ({authorized, role, setAuthorized}) => {
+  httpClient.defaults.headers.common['Authorization'] = `Bearer ${authorized}`;
 
   const [open, setOpen] = useState(false);
   const history = useHistory();
-  const [authorized, setAuthorized] = useState(token);
+  // const [authorized, setAuthorized] = useState(authorized);
 
-  useEffect(() => {
-    setAuthorized(token);
-  }, []);
+  // useEffect(() => {
+  //   setAuthorized(token);
+  // }, []);
 
   const logout = async () => {
     try {
@@ -71,7 +69,7 @@ const Header = () => {
               Seller
             </Link>
           )}
-          {token ? (
+          {authorized ? (
             <button
               type='button'
               className='text-2xl font-medium h-8 flex items-center text-yellow-600'

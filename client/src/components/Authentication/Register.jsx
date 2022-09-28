@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import httpClient from "../../utils/api";
 
-const Register = ({ setAuthorized }) => {
+const Register = ({ authorized, role, setAuthorized }) => {
   const history = useHistory();
   // const [error, setError] = useState({});
   const [input, setInput] = useState({
@@ -10,6 +10,16 @@ const Register = ({ setAuthorized }) => {
     password: "",
     role: "",
   });
+
+  useEffect(() => {
+    if (authorized) {
+      if (role === 'seller') {
+        history.push('/seller');
+      } else {
+        history.push('/');
+      }
+    }
+  }, [authorized]);
 
   const inputChange = (e) => {
     e.preventDefault();

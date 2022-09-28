@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import httpClient from '../../utils/api';
 
-const Login = ({ setAuthorized }) => {
+const Login = ({ authorized, role, setAuthorized }) => {
   const history = useHistory();
   const [input, setInput] = useState({
     username: '',
@@ -16,6 +16,17 @@ const Login = ({ setAuthorized }) => {
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };
+
+  useEffect(() => {
+    if (authorized) {
+      if (role === 'seller') {
+        history.push('/seller');
+      } else {
+        history.push('/');
+      }
+    }
+  }, [authorized]);
+  
 
   const login = async () => {
     const postData = {
