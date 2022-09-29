@@ -5,10 +5,7 @@ const { getUser } = require("./user.service");
 
 async function create(id, params) {
   params.seller_id = id;
-
-  const productExist = await Product.findOne({ productName: params.productName });
-
-  if (productExist) throw `${productExist.productName} aready exists`
+  await checkDuplicate(params)
   const product = await Product.create(params);
   return {
     product,
@@ -29,6 +26,7 @@ async function sellerProducts(id) {
 }
 
 async function update(sellerId, productId, params) {
+  await checkDuplicate(params);
   await checkSeller(sellerId, productId);
   await getProduct(productId);
   return await Product.findOneAndUpdate({ _id: productId }, params, {
@@ -115,6 +113,13 @@ async function getProduct(id) {
   const product = await Product.findById(id);
   if (!product) throw "Product not found";
   return product;
+}
+
+async function checkDuplicate(params) {
+  const productExist = await Product.findOne({
+    productName: params.productName,
+  });
+  if (productExist) throw `${productExist.productName} aready exists`;
 }
 
 async function checkSeller(sellerId, productId) {
