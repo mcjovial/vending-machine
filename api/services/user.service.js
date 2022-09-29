@@ -44,7 +44,8 @@ async function login({ username, password }, req) {
 async function logoutAll(body) {
   const { username } = body
   const user = await User.findOne({ username })
-  
+  if (!user) throw "Invalid User name"
+
   const user_logins = await UserLogin.find({
     user_id: user.id,
     logged_out: false,

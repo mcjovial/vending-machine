@@ -18,10 +18,9 @@ const Header = ({ authorized, role, setAuthorized }) => {
 
   const logout = async () => {
     try {
-      const response = await httpClient.get('/user/logout/');
-
-      const { data } = response;
       localStorage.clear();
+
+      const { data } = await httpClient.get('/user/logout/');
       history.push('/');
       setAuthorized('');
       toast(data.message);
