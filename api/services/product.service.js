@@ -5,6 +5,10 @@ const { getUser } = require("./user.service");
 
 async function create(id, params) {
   params.seller_id = id;
+
+  const productExist = await Product.findOne({ productName: params.productName });
+
+  if (productExist) throw "Product aready exists"
   const product = await Product.create(params);
   return {
     product,
