@@ -8,7 +8,7 @@ async function create(id, params) {
 
   const productExist = await Product.findOne({ productName: params.productName });
 
-  if (productExist) throw "Product aready exists"
+  if (productExist) throw `${productExist.productName} aready exists`
   const product = await Product.create(params);
   return {
     product,
