@@ -83,7 +83,7 @@ const Login = ({ authorized, role, setAuthorized }) => {
           />
         </div>
       </div>
-      <div className='flex justify-end w-full h-full'>
+      <div className='flex justify-center w-full h-full'>
         <button
           type='button'
           onClick={() => login()}

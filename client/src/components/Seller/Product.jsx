@@ -17,7 +17,7 @@ const Product = () => {
   });
 
   const token = localStorage.getItem('token');
-  httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  // httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   const inputChange = (e) => {
     e.preventDefault();
@@ -134,7 +134,7 @@ const Product = () => {
             onChange={(e) => inputChange(e)}
           />
         </div>
-        <div className='flex justify-end w-full h-full'>
+        <div className='flex justify-center w-full h-full'>
           <button
             type='button'
             onClick={() => remove()}
@@ -150,12 +150,6 @@ const Product = () => {
             Update
           </button>
         </div>
-      </div>
-      <div className='flex justify-center'>
-        <Link to='#' className='text-md font-sm'>
-          {' '}
-          Edit Product
-        </Link>
       </div>
     </div>
   );

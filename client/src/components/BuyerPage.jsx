@@ -116,13 +116,14 @@ const LandingPage = () => {
             <button
               key={i}
               onClick={(e) => u_deposit(e, coin)}
-              className='rounded-full bg-gray-700 hover:bg-gray-300 m-1 p-8 text-white shadow-xl'
+              // className='rounded-full bg-gray-700 hover:bg-gray-300 m-1 p-8 text-white shadow-xl'
+              className='w-20 h-20 rounded-full bg-blue-500 hover:bg-red-500 text-white sm:mx-2 shadow-lg'
             >
               ¢{coin}
             </button>
           ))}
         </div>
-        <div className='flex items-center bg-gray-300 rounded-2xl p-4'>
+        <div className='flex items-center bg-gray-300 rounded-2xl p-4 my-10'>
           <div className='grid md:grid-cols-3 sm:grid-cols-2'>
             {products.map((product, i) => (
               <button
@@ -141,7 +142,7 @@ const LandingPage = () => {
             ))}
           </div>
         </div>
-        <span className='text-3xl text-yellow-500 my-3'>
+        <span className='text-3xl text-yellow-500 my-12'>
           Deposit: ¢{deposit}
         </span>
         <button

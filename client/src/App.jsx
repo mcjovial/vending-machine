@@ -19,10 +19,12 @@ import BuyerRoute from './components/BuyerRoute';
 import LogoutAll from './components/Authentication/LogoutAll';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import httpClient from './utils/api';
 
 const App = () => {
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
+  httpClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   const [authorized, setAuthorized] = useState(token);
 

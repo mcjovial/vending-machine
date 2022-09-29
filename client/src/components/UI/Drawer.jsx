@@ -16,13 +16,6 @@ const Drawer = ({ setOpen, authorized, logout }) => (
       </Link>
       {authorized ? (
         <>
-          <Link
-            to="/seller"
-            className="text-2xl font-medium h-8 flex items-center"
-            onClick={() => setOpen(false)}
-          >
-            Seller
-          </Link>
           <button
             type="button"
             className="text-2xl font-medium h-8 flex items-center"

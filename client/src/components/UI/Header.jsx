@@ -6,21 +6,15 @@ import httpClient from '../../utils/api';
 import { toast } from 'react-toastify';
 
 const Header = ({ authorized, role, setAuthorized }) => {
-  httpClient.defaults.headers.common['Authorization'] = `Bearer ${authorized}`;
+  // httpClient.defaults.headers.common['Authorization'] = `Bearer ${authorized}`;
 
   const [open, setOpen] = useState(false);
   const history = useHistory();
-  // const [authorized, setAuthorized] = useState(authorized);
-
-  // useEffect(() => {
-  //   setAuthorized(token);
-  // }, []);
 
   const logout = async () => {
     try {
-      localStorage.clear();
-
       const { data } = await httpClient.get('/user/logout/');
+      localStorage.clear();
       history.push('/');
       setAuthorized('');
       toast(data.message);

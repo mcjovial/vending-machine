@@ -50,7 +50,7 @@ const LogoutAll = ({ authorized, role, setAuthorized }) => {
   return (
     <div className='w-full min-h-screen bg-yellow-400 p-8 py-12 space-y-12'>
       <div className='flex flex-col items-center space-y-8'>
-        <p className='font-bold text-4xl'>Have an existing Session?</p>
+        <p className='font-bold text-4xl sm:'>Have an existing Session?</p>
         <p className='text-xl font-medium'>Logout from all devices</p>
       </div>
       <div className='h-full w-full px-8 space-y-12'>
@@ -65,7 +65,7 @@ const LogoutAll = ({ authorized, role, setAuthorized }) => {
           />
         </div>
       </div>
-      <div className='flex justify-end w-full h-full'>
+      <div className='flex justify-center w-full h-full'>
         <button
           type='button'
           onClick={() => logout()}
