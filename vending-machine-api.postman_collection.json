@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"mcjovial\",\n    \"password\": \"password\"\n}",
+							"raw": "{\n    \"username\": \"user2\",\n    \"password\": \"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,25 +68,22 @@
 				},
 				{
 					"name": "Logout from all",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODQ4MlNUQ1kyNzg3WVJNRSIsImlhdCI6MTY2MjY1NjU2NywiZXhwIjoxNjYyNjU5MjY3fQ.SgaPP3mu5c0G31p8h2ItrrnAMZk2Q_Bd2SEX2V3qmh8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzM0MWZlYjM4YmY0YjI2MDQwZjJiODQiLCJpZCI6IjYzMzQxZmViMzhiZjRiMjYwNDBmMmI4NCIsInRva2VuX2lkIjoiNzA5NlVJSEI3Nzc2RkNCVSIsImlhdCI6MTY2NDM2MzIxNywiZXhwIjoxNjY2OTU1MjE3fQ.Iv1F1oAWZg-EoH8z5_rjTWWTnLV7gRw6vY-cGM238r0",
 									"type": "string"
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\n    \"username\": \"user1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,6 +100,48 @@
 								"user",
 								"logout",
 								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzM0MWZlYjM4YmY0YjI2MDQwZjJiODQiLCJpZCI6IjYzMzQxZmViMzhiZjRiMjYwNDBmMmI4NCIsInRva2VuX2lkIjoiMTQ0NFFOUVAxNDQ2Q1JLWCIsImlhdCI6MTY2NDM3NDc2OSwiZXhwIjoxNjY2OTY2NzY5fQ.4ttNVlinIVKNp0Kh8EMznLU-ZAS40zrFkfeobKS1-NA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HEROKU}}/api/user/logout/",
+							"host": [
+								"{{HEROKU}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"logout",
+								""
 							]
 						}
 					},
@@ -342,7 +381,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzM0ZGRjNjNiOWFkNzgyZWFmOTNlOGYiLCJpZCI6IjYzMzRkZGM2M2I5YWQ3ODJlYWY5M2U4ZiIsInRva2VuX2lkIjoiOTQ1NUJER0k1NTQ1VEJLSiIsImlhdCI6MTY2NDQwOTkzMCwiZXhwIjoxNjY3MDAxOTMwfQ.UkMum0oB4UpuVLJEU9dvtabIOFTKPb45RHcRtjUEJf8",
 									"type": "string"
 								}
 							]
@@ -416,7 +455,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiODE4N1lJSksxNTgxVVJQWCIsImlhdCI6MTY2MjY2MDE5NywiZXhwIjoxNjYyNjYyODk3fQ.FK0FutfJaD5fzUKPBlGVqdNx_-y1z7qQ0DdtCeMdaRI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzM0MWZlYjM4YmY0YjI2MDQwZjJiODQiLCJpZCI6IjYzMzQxZmViMzhiZjRiMjYwNDBmMmI4NCIsInRva2VuX2lkIjoiNzcxMUVOWEM0MTE0RUVUUiIsImlhdCI6MTY2NDM3NTM4NiwiZXhwIjoxNjY2OTY3Mzg2fQ.th15Mn3t11oG5CZ61h9QN4fmLvcIpcC2jaVosOqNcFY",
 									"type": "string"
 								}
 							]
@@ -445,7 +484,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsImlhdCI6MTY2MjQzMDkxMiwiZXhwIjoxNjYyNDMzNjEyfQ.i4QAJx3D7vwq-AaTU-nAVJWd8ZIXfeCJyiLXhH0vA8A",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzE0ZTA3ZjE3NjZjMTdlOGU3ZDcyYTYiLCJpZCI6IjYzMTRlMDdmMTc2NmMxN2U4ZTdkNzJhNiIsInRva2VuX2lkIjoiMjIyMU1QUFkxMjAwUkZQUCIsImlhdCI6MTY2MjY2Mjk4MSwiZXhwIjoxNjY1MjU0OTgxfQ.Bh5NauIdtQRgBr0F-7mJ7V44DczTDPlFp72I6YPaadM",
 									"type": "string"
 								}
 							]
@@ -454,7 +493,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"productName\": \"cocacola\",\n    \"description\": \"\",\n    \"cost\": \"\",\n    \"amountAvailable\": \"\"\n}",
+							"raw": "{\n    \"productName\": \"cocacola..\",\n    \"description\": \"hey changed\",\n    \"cost\": \"\",\n    \"amountAvailable\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
