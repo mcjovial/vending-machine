@@ -26,7 +26,10 @@ async function sellerProducts(id) {
 }
 
 async function update(sellerId, productId, params) {
-  await checkDuplicate(params);
+  // await checkDuplicate(params);
+  if (params.cost === 0 || params.cost % 5 !== 0) throw "Cost of a product should multiples of 5 and can not be for free"
+  if (params.amountAvailable > 10) throw "Product amounts can not be more then 10pcs."
+  
   await checkSeller(sellerId, productId);
   await getProduct(productId);
   return await Product.findOneAndUpdate({ _id: productId }, params, {

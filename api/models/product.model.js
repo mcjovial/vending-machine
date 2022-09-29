@@ -8,7 +8,6 @@ const validateCost = (e) => {
 
 const validateAmount = (e) => {
   //description not explaing how many etc. So I assume the vending machine slots max. 10 per slots.
-  //For future enhancement, made it with validateAmount function.
 
   if (e > 10) return false;
   else return true;
