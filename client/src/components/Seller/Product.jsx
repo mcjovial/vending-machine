@@ -90,13 +90,13 @@ const Product = () => {
   return (
     <div className='w-full min-h-screen bg-yellow-400 p-8 py-12 space-y-12 px-8'>
       <div className='flex flex-col items-center space-y-8'>
-        <p className='text-xl font-medium'>Edit {productName}</p>
+        <p className='text-md font-medium'>Edit <span className='text-2xl text-slate-800'>{productName}</span></p>
       </div>
       <div className='h-full w-full px-8 space-y-12'>
         <div className='flex flex-col items-center'>
           <input
             type='text'
-            className='h-12 w-full px-4 rounded shadow-lg'
+            className='h-12 w-80 px-4 rounded shadow-lg'
             id='productName'
             placeholder='Product name'
             defaultValue={productName}
@@ -107,7 +107,7 @@ const Product = () => {
         <div className='flex flex-col items-center'>
           <input
             type='text'
-            className='h-12 w-full px-4 rounded shadow-lg'
+            className='h-12 w-80 px-4 rounded shadow-lg'
             placeholder='Description'
             name='description'
             defaultValue={description}
@@ -117,7 +117,7 @@ const Product = () => {
         <div className='flex flex-col items-center'>
           <input
             type='number'
-            className='h-12 w-full px-4 rounded shadow-lg'
+            className='h-12 w-80 px-4 rounded shadow-lg'
             placeholder='Cost'
             name='cost'
             defaultValue={cost}
@@ -127,7 +127,7 @@ const Product = () => {
         <div className='flex flex-col items-center'>
           <input
             type='number'
-            className='h-12 w-full px-4 rounded shadow-lg'
+            className='h-12 w-80 px-4 rounded shadow-lg'
             placeholder='Amount available'
             name='amountAvailable'
             defaultValue={amountAvailable}

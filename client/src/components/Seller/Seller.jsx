@@ -99,7 +99,7 @@ const Seller = () => {
           <div className='flex flex-col items-center'>
             <input
               type='text'
-              className='h-12 w-full px-4 rounded shadow-lg'
+              className='h-12 w-80 px-4 rounded shadow-lg'
               id='productName'
               placeholder='Product name'
               name='productName'
@@ -109,7 +109,7 @@ const Seller = () => {
           <div className='flex flex-col items-center'>
             <input
               type='text'
-              className='h-12 w-full px-4 rounded shadow-lg'
+              className='h-12 w-80 px-4 rounded shadow-lg'
               placeholder='Description'
               name='description'
               onChange={(e) => inputChange(e)}
@@ -118,7 +118,7 @@ const Seller = () => {
           <div className='flex flex-col items-center'>
             <input
               type='number'
-              className='h-12 w-full px-4 rounded shadow-lg'
+              className='h-12 w-80 px-4 rounded shadow-lg'
               placeholder='Cost'
               name='cost'
               onChange={(e) => inputChange(e)}
@@ -127,7 +127,7 @@ const Seller = () => {
           <div className='flex flex-col items-center'>
             <input
               type='number'
-              className='h-12 w-full px-4 rounded shadow-lg'
+              className='h-12 w-80 px-4 rounded shadow-lg'
               placeholder='Amount available'
               name='amountAvailable'
               onChange={(e) => inputChange(e)}

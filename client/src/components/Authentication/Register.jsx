@@ -62,9 +62,9 @@ const Register = ({ authorized, role, setAuthorized }) => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-yellow-400 p-8 py-12 space-y-12">
+    <div className="w-full min-h-screen bg-yellow-400 p-8 py-20 space-y-12">
       <div className="w-full h-full flex flex-col items-center justify-center space-y-4">
-        <p className="text-2xl font-bold">Welcome</p>
+        <p className="text-3xl font-bold">Welcome</p>
         <p className="text-xl font-medium"> </p>
         <p className="text-xl font-medium">To get started create an acount</p>
       </div>
@@ -72,7 +72,7 @@ const Register = ({ authorized, role, setAuthorized }) => {
         <div className="flex flex-col items-center space-y-4">
           <input
             type="text"
-            className="h-12 w-full px-4 rounded-full shadow-lg"
+            className="h-12 w-80 px-4 rounded-full shadow-lg"
             id="username"
             placeholder="username"
             name="username"
@@ -82,7 +82,7 @@ const Register = ({ authorized, role, setAuthorized }) => {
         <div className="flex flex-col items-center space-y-2">
           <input
             type="text"
-            className="h-12 w-full px-4 rounded-full shadow-lg"
+            className="h-12 w-80 px-4 rounded-full shadow-lg"
             id="role"
             name="role"
             placeholder="Buyer or Seller"
@@ -92,7 +92,7 @@ const Register = ({ authorized, role, setAuthorized }) => {
         <div className="flex flex-col items-center space-y-2">
           <input
             type="password"
-            className="h-12 w-full px-4 rounded-full shadow-lg"
+            className="h-12 w-80 px-4 rounded-full shadow-lg"
             placeholder="Password"
             name="password"
             onChange={(e) => inputChange(e)}
